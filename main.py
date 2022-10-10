@@ -1,5 +1,6 @@
 import random
 
+#plays as the file given
 class PlayerFile:
     def __init__(self, filename):
         self.file = open(filename, "r")
@@ -11,7 +12,7 @@ class PlayerFile:
 class PlayerRandom:
     def __init__(self):
         self.value = ""
-
+    #random choice
     def NextChoice(self):
         self.value = random.choice(["C","P","R"])
 
@@ -19,6 +20,7 @@ def Play():
     p1.NextChoice()
     p2.NextChoice()
 
+    # calculates the value of the play (0 for loss, 1 for tie, 2 for win)
     if (p1.value == p2.value):
         print("both tie with " + p1.value)
     elif (p1.value == "C"):
@@ -49,6 +51,7 @@ p2.NextChoice()
 p1.NextChoice()
 print(p1.value)
 
+#plays the game a certain amount of times equal to the number in the file
 for i in range(int(p1.value)):
     Play()
     f.write(p1.value + " " + p2.value + "\n")

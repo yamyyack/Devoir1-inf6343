@@ -2,6 +2,7 @@ f = open("testExploreExploit400.txt", "r")
 
 TotalRegret = 0
 totalcount = [0,0,0]
+#counts the numbers of plays the file makes
 for line in f.readlines():
     values = line.strip().split(" ")
 

@@ -16,5 +16,3 @@ for line in f.readlines():
         TotalRegret += 2
 
 print(TotalRegret)
-
-#478

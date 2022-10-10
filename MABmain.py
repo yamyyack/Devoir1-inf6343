@@ -1,6 +1,6 @@
 import random
 
-
+#plays as the file given
 class PlayerFile:
     def __init__(self, filename):
         self.file = open(filename, "r")
@@ -8,15 +8,6 @@ class PlayerFile:
 
     def NextChoice(self):
         self.value = self.file.readline().strip()
-
-
-class PlayerRandom:
-    def __init__(self):
-        self.value = ""
-
-    def NextChoice(self):
-        self.value = random.choice(["C", "P", "R"])
-
 
 class PlayerMAB:
     def __init__(self, eps):
@@ -28,9 +19,10 @@ class PlayerMAB:
 
     def NextChoice(self):
         tempselect = -1
+        #if the randomness hits make a random choice
         if (random.random() < self.eps):
             tempselect = random.randint(0, 2)
-
+        #if it doesnt find the best average and choose that one
         else:
             maxmean = -1
             tempselect = -1
@@ -46,8 +38,7 @@ class PlayerMAB:
                     maxmean = mean
                     tempselect = i
             self.ChoiceCount[tempselect] += 1
-
-
+        # translates the position to a play
         if (tempselect == 0):
             self.value = "R"
         if (tempselect == 1):
@@ -55,6 +46,7 @@ class PlayerMAB:
         if (tempselect == 2):
             self.value = "C"
 
+    # updates the value of the score received
     def update(self, pos, val):
         if(pos == "R"):
             self.ChoiceSum[0] += val
@@ -68,6 +60,7 @@ def Play():
     p1.NextChoice()
     p2.NextChoice()
     updatevalue = -1
+    # calculates the value of the play (0 for loss, 1 for tie, 2 for win)
     if (p1.value == p2.value):
         print("both tie with " + p1.value)
         updatevalue = 1
@@ -107,6 +100,7 @@ p2.NextChoice()
 p1.NextChoice()
 print(p1.value)
 
+#plays the game a certain amount of times equal to the number in the file
 for i in range(int(p2.value)):
     Play()
     f.write(p1.value + " " + p2.value + "\n")
